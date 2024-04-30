@@ -1,0 +1,27 @@
+<!-- Simple JSX Element -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // Your JSX code here
+
+      // catch the Root Element
+    let rootElement = document.getElementById("root")
+
+    // Create a React Element
+    let header = <p>Seize the day</p>
+
+    // Use ReactDOM.render to mount your created React element 
+    ReactDOM.createRoot(rootElement).render(header)
+    </script>
+  </body>
+</html>

@@ -13,7 +13,11 @@
   <script type="text/babel">
     // Your ItemList component code will go here
 
-    const ItemList = (items) => {
+    let rootElement = document.getElementById("root")
+
+    let reactRoot = ReactDOM.createRoot(rootElement)
+
+    let ItemList = ({items}) => {
 
         return(
             <div>
@@ -23,7 +27,9 @@
                 ) :(
                     <ul>
                         {items.map((item, index) => (
-                            <li key={index}>{item}</li>
+                            <ul key={index}>
+                                <li>{item} </li>
+                            </ul>
                         ))}
                     </ul>
                 )}
@@ -32,11 +38,7 @@
        
     }
 
-    const rootElement = document.getElementById("root")
-
-    const reactRoot = ReactDOM.createRoot(rootElement)
-
-    reactRoot.render(<ItemList/>)
+    reactRoot.render(<ItemList items = {["Apple", "Banana", "Cherry"]}/>)
   </script>
 </body>
 </html>

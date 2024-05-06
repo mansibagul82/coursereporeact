@@ -13,23 +13,31 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel">
             // Your ItemList component code will go here
-            function Gallery({ children }) {
-            // Rest of your code..
-                return <div className="gallery-grid"> {children} </div>
+
+            let reactRoot = ReactDOM.createRoot(document.getElementById("root"))
+            let App =() => {
+                function Gallery({ children, children1 }) {
+                // Rest of your code..
+                    return (
+                        <>
+                            <img src={children} width="300px"/>
+                            <img src={children1} width="300px" />
+                        </>
+                    )
+                }
+
+                return (
+                    <> 
+                        <Gallery children = "https://th.bing.com/th/id/R.fda6ee9c5f523def0c20e3d857514af1?rik=eEVe2ndRdQkCBA&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f08%2fCute-Puppies-Dog-Wallpaper.jpg&ehk=YlJ39q3L3s3ZTL%2fbcGAftWgEesm%2bUr5nFX7%2bs0kt4gs%3d&risl=&pid=ImgRaw&r=0"/>
+                        <Gallery children = "https://th.bing.com/th/id/R.af53d0602092ce00562409628a2517f8?rik=8SevR6S1EXisnw&riu=http%3a%2f%2f1.bp.blogspot.com%2f-f5R49nYJXac%2fUaWCxq6hb3I%2fAAAAAAAAAJw%2fleiQXcfAg3g%2fs1600%2fcute-golden-retriever-puppy-animals-baby-animals-dogs-golden.jpg&ehk=MVF%2fhqlzxrqJBgs2zx0wjHDwqUNAF20r%2b7FRzkpryhg%3d&risl=&pid=ImgRaw&r=0"/>
+                    </>
+                )
+
             }
 
-            <Gallery>
-
-                <Image src="https://www.bhagwanphoto.com/wp-content/uploads/2020/02/Lord-Ganesha-HD-Wallpapers-for-Mobile-and-PC.jpg" />
-                <Image src="https://wallpapercave.com/wp/wp4605587.jpg" />
-                // Additional images can be included as needed
-                
-            </Gallery>
-
-            const reactRoot = ReactDOM.createRoot(document.getElementById("root"))
-
-            reactRoot.render(<Gallery/>)
+            reactRoot.render(<App/>)
         </script>
 
     </body>
 </html>
+

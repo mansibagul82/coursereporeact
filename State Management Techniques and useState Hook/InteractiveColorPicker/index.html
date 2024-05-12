@@ -15,32 +15,38 @@
     // Your  code will go here
     function App(){
 
-        const [inputstate, setInputstate] = React.useState('#FFFFFF');
+        const [colourstate, setColourtate] = React.useState('#FFFFFF');
 
         function handleChange(event){
 
-            setInputstate(event.target.value);
+            setColourtate(event.target.value);
         }
         
         return(
             <>
               <input 
-              placeholder ="Enter HEX Color"
-              type = "text"
-              value = {color}
-              // onChange = {handleChange}
+                placeholder ="Enter HEX Color"
+                type = "text"
+                value = {colourstate}
+                onChange = {handleChange}
               // style = {{
               //   width: "100px"
               // }}
                />
 
-              <div className = "colorPreview"
-              style = {{
-                width:"150px",
-                marginTop: "12px"
-
-              }}>
-              </div>
+              {colourstate.length === 4 || colourstate.length === 7 ? (
+                <div>
+                  style={{
+                    backgroundColor: colourstate,
+                    width: '190px',
+                    height: '200px',
+                    marginTop: '10px auto',
+                  }}
+                </div>
+                ) : (
+                  <p> HEX color code if </p>
+                )
+              }
             </>
         )
     }
@@ -49,6 +55,6 @@
 
     let reactRoot = ReactDOM.createRoot(rootElement)
 
-    reactRoot.render(<App/>)
+    reactRoot.render(<App />)
   </script>
 </html>

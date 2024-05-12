@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+      body{
+        margin-left: 34%;
+      }
+      h1{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: rgb(21, 141, 115);
+      }
+      #root{
+        height: 200px;
+        width: 50%;
+        padding: 3%;
+        background-color: rgb(229, 255, 229);
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+      }
+      input{
+        margin-left: 70px;
+        margin-right: 2%;
+        border: none;
+
+      }
+      button{
+        border: none
+        
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Todo List application</h1>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your  code will go here
+    let rootEle = document.getElementById("root")
+
+    let reactRoot = ReactDOM.createRoot(rootEle)
+
+    function TodoList(){
+
+        const [todos, setTodos] = React.useState([])
+        const [newTodo, setNewTodo] = React.useState("")
+
+        const addTodo = () => {
+          setTodos([
+            ...todos, 
+            {id: Date.now(), text : newTodo, completed : false},
+          ])
+          setsNewTodo("")
+        }
+
+        const toggleTodo = (id) => {
+            setTodos((prevTodos) =>
+              prevTodos.map(todo => 
+                todo.id === id ? {...todo, completed: !todo.completed} : todo
+              )
+            )
+        }
+
+        const removeTodo = (id) => {
+          setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
+
+        }
+        return(
+            <>
+                <input value= {newTodo} type="text" onChange={(e)=> setNewTodo(e.target.value)} />
+                <button onClick={addTodo}>Add Todo</button>
+
+                <ul>
+                    {todos.map((todo,index)=> (
+                        <li key = {todo.id}>
+                            <input type="checkbox" checked = {todo.completd} onChange={() => toggleTodo(todo.id)}/>
+                            <span>{todo.text}</span>
+                            <button onClick={() => removeTodo(todo.id)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
+            </>
+        )
+    }
+
+    reactRoot.render(<TodoList/>)
+  </script>
+</html>

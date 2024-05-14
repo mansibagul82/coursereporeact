@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+        }
+        h1{
+            font-size: 30px;
+            text-align: center;
+            border:none;
+            color: rgb(226, 43, 128);
+            font-family:cursive;
+            margin-bottom: 7%;
+        }
+        input{
+            padding: 10px;
+            margin: 10px;
+            display: block;
+            margin: auto;
+            margin-bottom: 5%;
+            border-radius: 10px;
+            background-color: rgb(255, 244, 212);
+        }
+        button{
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+        }
+        button:hover{
+            background-color: yellowgreen;
+            font-size: 18px;
+            color: white;
+        }
+
+        #Addhobbies{
+            background-color: rgb(247, 158, 247);
+        }
+        
+        #Removebtn{
+            color: black;
+            background-color: rgb(254, 107, 107);
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your  code will go here
+
+    let rootEle = document.getElementById("root");
+    function DynamicForm(){
+        const [inputData, setInputData] = React.useState([""]);
+
+    function handleChange(e, i){
+      let arr = [...inputData];
+      arr[i].value = e.target.value;
+      setInputData(arr);
+
+    }
+
+    function addHobbies() {
+        setInputData([...inputData, { value: ""}]);
+    }
+
+    function handleRemove(i){
+        let filteredData = inputData.filter((ele, index) => {
+            return index != i;
+        });
+        setInputData(filteredData);
+    }
+
+    return(
+        <div>
+            <h1>Dynamic Form Inputs With React</h1>
+        {inputData.map((ele,i) => {
+            return(
+                <div key={i}>
+                    <input type="text" value={ele.value} onChange={(e) => handleChange(e , i)} />
+                    <button id="Addhobbies" onClick={addHobbies}>Add Hobbies</button>
+                    <button id="Removebtn" onClick={() => handleRemove(i)} disabled={inputData.length <= 1}>Remove Hobbies</button>
+                    </div>
+            )
+        })}
+        
+        </div>
+    )
+}
+
+ReactDOM.createRoot(rootEle).render(<DynamicForm />)
+</script>
+</html>
